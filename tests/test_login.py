@@ -31,3 +31,12 @@ class TestLogin(AutomationWrapper):
         self.driver.find_element(By.XPATH, "//button[contains(normalize-space(),'Login')]").click()
         actual_value = self.driver.find_element(By.XPATH, "//p[contains(@class,'alert-content-text')]").text
         assert_that(actual_value).contains(expected_error)
+
+
+    @pytest.mark.parametrize("username,password,expected_error", DataSource.data_invalid_login_excel)
+    def test_invalid_login_using_excel(self, username, password, expected_error):
+        self.driver.find_element(By.NAME, "username").send_keys(username)
+        self.driver.find_element(By.NAME, "password").send_keys(password)
+        self.driver.find_element(By.XPATH, "//button[contains(normalize-space(),'Login')]").click()
+        actual_value = self.driver.find_element(By.XPATH, "//p[contains(@class,'alert-content-text')]").text
+        assert_that(actual_value).contains(expected_error)
