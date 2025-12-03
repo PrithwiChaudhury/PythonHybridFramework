@@ -40,3 +40,4 @@ class TestLogin(AutomationWrapper):
         self.driver.find_element(By.XPATH, "//button[contains(normalize-space(),'Login')]").click()
         actual_value = self.driver.find_element(By.XPATH, "//p[contains(@class,'alert-content-text')]").text
         assert_that(actual_value).contains(expected_error)
+
