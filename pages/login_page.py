@@ -9,6 +9,7 @@ class LoginPage(WebDriverKeywords):
     PASSWORD_LOCATOR = (By.NAME, "password")
     LOGIN_TITLE_LOCATOR = (By.XPATH, "//button[contains(normalize-space(),'Login')]")
     INVALID_ERROR_TEXT = (By.XPATH, "//p[contains(@class,'alert-content-text')]")
+    HEADER_TITLE = (By.XPATH, "//h5[contains(@class,'orangehrm-login-title')]")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -31,7 +32,9 @@ class LoginPage(WebDriverKeywords):
         return actual_value
 
     def get_login_header(self):
-        pass
+        # header = self.driver.find_element(By.XPATH, "//h5[contains(@class,'orangehrm-login-title')]").text
+        header = self.get_text_from_element(LoginPage.HEADER_TITLE)
+        return header
 
     def get_username_placeholder(self):
         # username_placeholder = self.__driver.find_element(By.XPATH, "//input[@name='username']").get_attribute(

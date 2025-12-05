@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
+from base.webdriver_keywords import WebDriverKeywords
 
 
-class DashboardPage:
+class DashboardPage(WebDriverKeywords):
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.__driver = driver
 
     def get_quick_launch_text(self):
